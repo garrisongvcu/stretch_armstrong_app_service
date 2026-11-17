@@ -1,4 +1,4 @@
-// Import Express and create a router for workout requests
+// Import Express and create a router for API request
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
@@ -9,40 +9,37 @@ const corsRules = {
 }
 
 // SQL database connection (PBI 6)
-// Will be enabled once the database is ready
-// const databaseSettings = require('../db.js')
+// const database = require('../db.js')
 // const mysql = require('mysql')
-// const sql = mysql.createConnection(databaseSettings.conn_info)
+// const sql = mysql.createConnection(database.conn_info)
 // sql.connect()
 
-// GET: Retrieve workout information from the SQL database
-// and return the results to the frontend
+// GET: Get workout info from SQL then push it to the front end
 router.get('/workout_address', cors(corsRules), function(req, res, next) {
 
-  sql.query('enter sql query here', (err, r, f) => {
+  sql.query('enter sql query here', (e, r, f) => {
 
-    if (!err) {
+    if (!e) {
       res.json(r)
     }
     else {
-      next(err)
+      next(e)
     }
 
   })
 
 })
 
-// POST: Receive completed workout information from the frontend
-// and save it to the SQL database
+// POST: Receive finished workout information from the frontend and save it to SQL
 router.post('/finished_workout_address', cors(corsRules), function(req, res, next) {
 
-  sql.query('enter sql query here', (err, r, f) => {
+  sql.query('enter sql query here', (e, r, f) => {
 
-    if (!err) {
+    if (!e) {
       res.json(r)
     }
     else {
-      next(err)
+      next(e)
     }
 
   })
