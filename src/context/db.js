@@ -1,17 +1,13 @@
-const mysql = require('mysql2');
+// config/db.js
+const mysql = require('mysql');
 
-// Connection details for local MySQL development (port 3306 by default)
-const conInfo = {
+// createPool keeps a small group of connections ready to use
+const pool = mysql.createPool({
+  connectionLimit: 10,
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: '', // Enter your local MySQL password if you have one
   database: 'stretch_armstrong_db'
-};
+});
 
-// Create a reusable connection pool for Express routes
-const pool = mysql.createPool(conInfo);
-
-module.exports = {
-  conInfo,
-  pool
-};
+module.exports = pool;
